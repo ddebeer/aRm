@@ -21,3 +21,14 @@ This function is a copy of the S3 `print()` method for objects of the
 `linearHypothesis.mlm`-class. However, rather than invisibly returning
 the object, the printed test results are returned as a data.frame
 }
+\examples{
+data(OBrienKaiser, package = "carData")
+mod_OK <- lm(cbind(pre.1, pre.2, pre.3, pre.4, pre.5,
+                   post.1, post.2, post.3, post.4, post.5,
+                   fup.1, fup.2, fup.3, fup.4, fup.5) ~  gender,
+             data = OBrienKaiser)
+L <- rbind(c(1, 0))
+M <- cbind(rep(c(-1/5, 0, 1/5), each = 5))
+results <- extract_results(car::linearHypothesis(mod_OK, L, P = M, test = "Wilks"))
+
+}

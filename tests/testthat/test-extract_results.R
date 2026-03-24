@@ -30,7 +30,7 @@ results2 <- extract_results(test2)
 test_that("extracting results works for multiple tests", {
   expect_equal(dim(results1), c(4, 6))
   expect_equal(names(results1),  c("df", "test stat", "approx F", "num df",
-                                  "den df", "p-value"))
+                                  "den df", "p_value"))
   expect_equal(rownames(results1), c("Pillai", "Wilks", "Hotelling-Lawley",
                                     "Roy"))
 })
@@ -39,7 +39,7 @@ test_that("extracting results works for multiple tests", {
 test_that("extracting results works for one test", {
   expect_equal(dim(results2), c(1, 6))
   expect_equal(names(results2),  c("df", "test stat", "approx F", "num df",
-                                  "den df", "p-value"))
+                                  "den df", "p_value"))
   expect_equal(rownames(results2), "Wilks")
 })
 
