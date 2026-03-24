@@ -8,6 +8,8 @@
 [![Codecov test
 coverage](https://codecov.io/gh/ddebeer/aRm/graph/badge.svg)](https://app.codecov.io/gh/ddebeer/aRm)
 [![R-CMD-check](https://github.com/ddebeer/aRm/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ddebeer/aRm/actions/workflows/R-CMD-check.yaml)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/aRm)](https://CRAN.R-project.org/package=aRm)
 <!-- badges: end -->
 
 The aRm packages provides helpful functions related to the course
@@ -47,7 +49,7 @@ For more information about the data set, you can consult the
 documentation.
 
 ``` r
-?carData::OBreinKaieser
+?carData::OBrienKaiser
 ```
 
 A multi-variate linear model is fit to the data.
@@ -59,10 +61,10 @@ mod_OK <- lm(cbind(pre.1, pre.2, pre.3, pre.4, pre.5,
              data = OBrienKaiser)
 ```
 
-To test a specific hyptothesis, an L- and M-Matrix can be specified.
-Here the null hypothesis is: “*on average, there is no difference
-between the pre and the follow-up measures*”. Takinging into account the
-contrasts for `treatment` and `gender`, the corresponding L-matrix is:
+To test a specific hypothesis, an L- and M-Matrix can be specified. Here
+the null hypothesis is: “*on average, there is no difference between the
+pre and the follow-up measures*”. Considering the contrasts for
+`treatment` and `gender`, the corresponding L-matrix is:
 
 ``` r
 L <- rbind(c(1, 0, 0, 0, 0, 0))
@@ -141,7 +143,7 @@ test
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
-In order to extract the test restuls, the `extract_results()` function
+In order to extract the test results, the `extract_results()` function
 from the `aRm` package can be used:
 
 ``` r
