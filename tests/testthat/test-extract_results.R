@@ -27,6 +27,27 @@ test2 <- car::linearHypothesis(mod_OK, L, P = M, test = "Wilks")
 results2 <- extract_results(test2)
 
 
+# for anova anova
+anova <- car::Anova(mod_OK, idata = idata,
+                    type = "III",
+                    idesign = ~ phase * hour,
+                    test.statistic = "Wilks")
+results3 <- extract_results(anova)
+
+results4 <- extract_results(anova, test = "Roy")
+results5 <- extract_results(anova, test = "Hotelling-Lawley")
+
+
+test_that("extract_results gives errors", {
+  expect_error(extract_results(anova, test = "test"), "The `test` should be one of 'Pillai', 'Wilks', 'Hotelling-Lawley', and 'Roy'")
+
+  expect_error(extract_results(anova, test = c("Roy", "Wilks")), "The `test` should be one of 'Pillai', 'Wilks', 'Hotelling-Lawley', and 'Roy'")
+
+  expect_error(extract_results(test2, test = "this is stupid"), "The `test` should be one or more of 'Pillai', 'Wilks', 'Hotelling-Lawley', and 'Roy'")
+})
+
+
+
 test_that("extracting results works for multiple tests", {
   expect_equal(dim(results1), c(4, 6))
   expect_equal(names(results1),  c("df", "test stat", "approx F", "num df",
@@ -45,14 +66,43 @@ test_that("extracting results works for one test", {
 
 
 
+
 test_that("extracting results has the correct class", {
   expect_s3_class(results1, c("anova", "dataframe"))
   expect_s3_class(results2, c("anova", "dataframe"))
+  expect_s3_class(results3, c("anova", "dataframe"))
 })
+
+
+test_that("extracting results works for anova", {
+  expect_equal(dim(results3), c(16, 6))
+  expect_equal(dim(results4), c(16, 6))
+  expect_equal(dim(results5), c(16, 6))
+
+  expect_equal(names(results3),  c("df", "test stat", "approx F", "num df",
+                                   "den df", "p_value"))
+  expect_equal(names(results4),  c("df", "test stat", "approx F", "num df",
+                                   "den df", "p_value"))
+  expect_equal(names(results5),  c("df", "test stat", "approx F", "num df",
+                                   "den df", "p_value"))
+
+  expect_equal(rownames(results3), anova$terms)
+  expect_equal(rownames(results4), anova$terms)
+  expect_equal(rownames(results5), anova$terms)
+})
+
 
 
 test_that("extracting results gives previous results", {
   expect_snapshot(results1)
   expect_snapshot(results2)
+  expect_snapshot(results3)
+  expect_snapshot(results4)
+  expect_snapshot(results5)
 })
+
+
+
+
+
 

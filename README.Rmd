@@ -33,7 +33,7 @@ You can install the development version of aRm from [GitHub](https://github.com/
 pak::pak("ddebeer/aRm")
 ```
 
-## Example
+## Example - Linear Hypothesis
 
 This is a basic example which shows how to use the `extract_results()` function.
 
@@ -109,6 +109,31 @@ As the returned object is a `data.frame`, extracting results is straightforward.
 p <- results$'p-value'
 ```
 
+
+## Example - Anova
+
+It is also possible to specify the design of the repeated measures:
+
+```{r}
+idata <- expand.grid(measure = factor(1:5), 
+                     time = factor(c("pre", "post", "fup")))
+contrasts(idata$measure) <- contr.sum(5)
+contrasts(idata$time) <- contr.sum(3)
+
+anova <- car::Anova(mod_OK, 
+                    idata = idata, 
+                    idesign = ~ measure * time, 
+                    type = "III")
+
+
+```
+
+In order to extract the test results, the `extract_results()` function from the `aRm` package can be used:
+
+```{r extract results}
+results <- extract_results(anova)
+knitr::kable(results, digits = c(1, 3, 1, 0, 0, 5))
+```
 
 
 

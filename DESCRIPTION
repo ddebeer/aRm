@@ -1,7 +1,7 @@
 Package: aRm
 Type: Package
 Title: Functions related to the course Analysis of Repeated Measurements
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(
     person("Dries", "Debeer",
     email = "debeer.dries@gmail.com", 
