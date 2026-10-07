@@ -3,5 +3,6 @@
 S3method(extract_results,Anova.mlm)
 S3method(extract_results,linearHypothesis.mlm)
 S3method(sigma,mlm)
+export(cor2cov)
 export(extract_results)
 importFrom(stats,sigma)
