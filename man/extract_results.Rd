@@ -9,7 +9,7 @@ extract_results(x, test = NULL, ...)
 \arguments{
 \item{x}{object of class `linearHypothesis.mlm` or class `Anova.mlm`}
 
-\item{test}{the type of multivariate test to extract. Should be `NULL`, the default, or one of
+\item{test}{the type of multivariate test to extract. Should be NULL, the default, or one of
 "Pillai", "Wilks", "Hotelling-Lawley", "Roy".}
 
 \item{...}{additional arguments}

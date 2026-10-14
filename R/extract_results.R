@@ -8,7 +8,7 @@
 #' the object, the printed test results are returned as a data.frame
 #'
 #' @param x object of class `linearHypothesis.mlm` or class `Anova.mlm`
-#' @param test the type of multivariate test to extract. Should be `NULL`, the default, or one of
+#' @param test the type of multivariate test to extract. Should be NULL, the default, or one of
 #'             "Pillai", "Wilks", "Hotelling-Lawley", "Roy".
 #' @param ... additional arguments
 #'

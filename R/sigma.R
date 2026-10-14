@@ -23,5 +23,5 @@
 sigma.mlm <- function(object,
                       ...)
 {
-  stats::var(object$residuals) / object$df.residual
+  sqrt((t(object$residuals) %*% object$residuals) / object$df.residual)
 }

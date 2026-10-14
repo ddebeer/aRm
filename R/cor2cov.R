@@ -23,7 +23,7 @@ cor2cov <- function(cor, sd){
             "'cor' is not symmetric" = all(cor == t(cor)),
             "All diagonal values should be equal to 1." = all(diag(cor) == 1),
             "All of diagonal values should be in the -1, 1 interval" = all(cor <= 1 & cor >= -1))
-  cov2cor(cor)
+  stats::cov2cor(cor)
 
   # for checking sd
   dims <- dim(cor)
